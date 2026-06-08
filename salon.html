@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salón — GlowBook</title>
+  <meta name="theme-color" content="#1a0a2e" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/salon.css" />
+</head>
+<body class="salon-page">
+
+  <nav class="nav nav-salon">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-gem">✦</span> GlowBook
+    </a>
+    <div class="nav-actions">
+      <button class="btn-outline" id="shareBtn" onclick="shareSalon()">Compartir 🔗</button>
+    </div>
+  </nav>
+
+  <!-- SALON HERO -->
+  <div class="salon-hero" id="salonHero">
+    <div class="salon-hero-bg" id="salonBg"></div>
+    <div class="salon-hero-content">
+      <div class="salon-logo-wrap" id="salonLogoWrap">
+        <img id="salonLogoImg" src="" alt="Logo" style="display:none;" />
+        <div id="salonLogoFallback" class="logo-fallback"></div>
+      </div>
+      <div class="salon-meta">
+        <h1 id="salonName"></h1>
+        <p id="salonTagline" class="salon-tagline"></p>
+        <div class="salon-badges" id="salonBadges"></div>
+        <div class="salon-contact" id="salonContact"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <div class="container">
+      <button class="tab-btn active" onclick="showTab('services')">Servicios</button>
+      <button class="tab-btn" onclick="showTab('gallery')">Galería</button>
+      <button class="tab-btn" onclick="showTab('booking')">Agendar Cita</button>
+    </div>
+  </div>
+
+  <main class="container salon-main">
+
+    <!-- SERVICES TAB -->
+    <div class="tab-panel active" id="tab-services">
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+
+    <!-- GALLERY TAB -->
+    <div class="tab-panel" id="tab-gallery">
+      <div class="gallery-grid" id="galleryGrid">
+        <p class="placeholder-text">La dueña del salón aún no ha agregado fotos.</p>
+      </div>
+    </div>
+
+    <!-- BOOKING TAB -->
+    <div class="tab-panel" id="tab-booking">
+      <div class="booking-card">
+        <h2>Agendar Cita</h2>
+        <p class="booking-sub">Selecciona el servicio, fecha y hora de tu preferencia.</p>
+
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input type="text" id="bkName" placeholder="Ej. María López" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono / WhatsApp</label>
+          <input type="tel" id="bkPhone" placeholder="+52 55 1234 5678" />
+        </div>
+        <div class="form-group">
+          <label>Servicio</label>
+          <select id="bkService">
+            <option value="">— Selecciona un servicio —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" id="bkDate" />
+        </div>
+        <div class="form-group">
+          <label>Hora</label>
+          <select id="bkTime">
+            <option value="">— Selecciona hora —</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Notas (opcional)</label>
+          <textarea id="bkNotes" placeholder="Diseño especial, alergias, etc."></textarea>
+        </div>
+
+        <button class="btn-book" onclick="submitBooking()">Confirmar cita ✦</button>
+        <div id="bookingMsg" class="booking-msg" style="display:none;"></div>
+      </div>
+
+      <!-- Appointments list for salon owner view -->
+      <div id="appointmentsList" style="display:none;"></div>
+    </div>
+
+  </main>
+
+  <!-- Floating book button -->
+  <div class="fab" onclick="showTab('booking'); document.querySelector('.tabs-bar').scrollIntoView({behavior:'smooth'})">
+    📅 Reservar
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="logo-gem">✦</span> GlowBook &nbsp;·&nbsp; <a href="index.html">Ver todos los salones</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/salon.js"></script>
+</body>
+</html>

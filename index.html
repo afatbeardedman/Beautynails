@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlowBook — Reserva tu Cita de Belleza</title>
+  <meta name="description" content="Encuentra los mejores salones de uñas y belleza. Agenda tu cita en segundos." />
+  <meta name="theme-color" content="#1a0a2e" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-gem">✦</span> GlowBook
+    </a>
+    <div class="nav-actions">
+      <a href="admin.html" class="btn-outline">Soy dueña de salón</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Agenda sin llamadas, sin esperas</p>
+      <h1 class="hero-title">
+        Tu belleza,<br />
+        <em>a un toque</em>
+      </h1>
+      <p class="hero-sub">Explora salones, revisa catálogos y reserva tu cita favorita en segundos.</p>
+      <div class="hero-search">
+        <input type="text" id="searchInput" placeholder="Buscar salón o servicio..." autocomplete="off" />
+        <button onclick="filterSalons()">Buscar</button>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">↓</div>
+  </section>
+
+  <!-- SALONES -->
+  <section class="salons-section" id="salons">
+    <div class="container">
+      <div class="section-header">
+        <h2>Salones disponibles</h2>
+        <div class="filter-tags" id="filterTags"></div>
+      </div>
+      <div class="salons-grid" id="salonsGrid">
+        <!-- Populated by JS -->
+      </div>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <p>No se encontraron salones con ese criterio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA INSTALL -->
+  <section class="install-banner" id="installBanner" style="display:none;">
+    <div class="container">
+      <div class="install-content">
+        <span class="install-icon">📲</span>
+        <div>
+          <strong>Agrega GlowBook a tu pantalla de inicio</strong>
+          <p>Accede rápido desde tu celular sin abrir el navegador.</p>
+        </div>
+        <button class="btn-install" id="installBtn">Instalar</button>
+        <button class="btn-dismiss" onclick="document.getElementById('installBanner').style.display='none'">✕</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="logo-gem">✦</span> GlowBook &nbsp;·&nbsp; Conectando belleza con estilo
+        <span class="footer-right">
+          <a href="admin.html">Panel de salón</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

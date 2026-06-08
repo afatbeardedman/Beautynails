@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Salón — GlowBook</title>
+  <meta name="theme-color" content="#1a0a2e" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-page">
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo"><span class="logo-gem">✦</span> GlowBook</a>
+    <div class="nav-actions">
+      <a href="index.html" class="btn-outline">← Ver salones</a>
+    </div>
+  </nav>
+
+  <!-- LOGIN / SELECT -->
+  <div class="admin-wrapper">
+
+    <!-- STEP 0: Choose or create salon -->
+    <div id="stepSelect" class="admin-card">
+      <h2>Panel de administración</h2>
+      <p class="admin-sub">Selecciona tu salón o crea uno nuevo.</p>
+
+      <div id="existingSalons" class="existing-salons"></div>
+
+      <button class="btn-primary mt-2" onclick="startCreate()">＋ Crear nuevo salón</button>
+    </div>
+
+    <!-- STEP 1: Create / Edit salon -->
+    <div id="stepEdit" class="admin-card" style="display:none;">
+      <div class="admin-tabs">
+        <button class="adm-tab active" onclick="switchAdmTab('info')">Información</button>
+        <button class="adm-tab" onclick="switchAdmTab('services')">Servicios</button>
+        <button class="adm-tab" onclick="switchAdmTab('gallery')">Galería</button>
+        <button class="adm-tab" onclick="switchAdmTab('schedule')">Horarios</button>
+        <button class="adm-tab" onclick="switchAdmTab('appointments')">Citas</button>
+      </div>
+
+      <!-- INFO TAB -->
+      <div class="adm-panel active" id="adm-info">
+        <h3>Información del salón</h3>
+        <input type="hidden" id="editId" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre del salón *</label>
+            <input type="text" id="editName" placeholder="Ej. Nail Studio Sofía" />
+          </div>
+          <div class="form-group">
+            <label>Eslogan / tagline</label>
+            <input type="text" id="editTagline" placeholder="Ej. Arte en cada uña" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Logo del salón</label>
+          <div class="logo-upload-area" onclick="document.getElementById('logoInput').click()">
+            <img id="logoPreview" src="" alt="" style="display:none;max-height:100px;" />
+            <div id="logoPlaceholder">📷 Clic para subir logo</div>
+          </div>
+          <input type="file" id="logoInput" accept="image/*" style="display:none;" onchange="handleLogo(event)" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ciudad / Ubicación</label>
+            <input type="text" id="editCity" placeholder="Ej. Ciudad de México" />
+          </div>
+          <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" id="editAddress" placeholder="Calle y número" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" id="editPhone" placeholder="+52 55 0000 0000" />
+          </div>
+          <div class="form-group">
+            <label>Instagram (sin @)</label>
+            <input type="text" id="editInstagram" placeholder="minails_studio" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Color principal del salón</label>
+          <input type="color" id="editColor" value="#c77dff" />
+        </div>
+
+        <div class="form-group">
+          <label>Categorías (selecciona las que ofreces)</label>
+          <div class="check-group" id="catGroup">
+            <label><input type="checkbox" value="Uñas" /> Uñas</label>
+            <label><input type="checkbox" value="Cabello" /> Cabello</label>
+            <label><input type="checkbox" value="Cejas y pestañas" /> Cejas y pestañas</label>
+            <label><input type="checkbox" value="Depilación" /> Depilación</label>
+            <label><input type="checkbox" value="Masajes" /> Masajes</label>
+            <label><input type="checkbox" value="Maquillaje" /> Maquillaje</label>
+            <label><input type="checkbox" value="Faciales" /> Faciales</label>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="saveInfo()">Guardar información</button>
+      </div>
+
+      <!-- SERVICES TAB -->
+      <div class="adm-panel" id="adm-services">
+        <h3>Catálogo de servicios</h3>
+        <div id="servicesList" class="services-admin-list"></div>
+        <div class="add-service-form">
+          <input type="text" id="svcName" placeholder="Nombre del servicio" />
+          <input type="text" id="svcDesc" placeholder="Descripción breve" />
+          <input type="number" id="svcPrice" placeholder="Precio (ej. 250)" min="0" />
+          <input type="number" id="svcDuration" placeholder="Duración (min)" min="15" step="15" />
+          <button class="btn-secondary" onclick="addService()">＋ Agregar</button>
+        </div>
+      </div>
+
+      <!-- GALLERY TAB -->
+      <div class="adm-panel" id="adm-gallery">
+        <h3>Galería de trabajos</h3>
+        <p class="admin-sub">Agrega fotos de tus trabajos para mostrar a las clientas.</p>
+        <div class="gallery-upload-area" onclick="document.getElementById('galleryInput').click()">
+          📷 Clic para agregar fotos
+        </div>
+        <input type="file" id="galleryInput" accept="image/*" multiple style="display:none;" onchange="handleGallery(event)" />
+        <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
+      </div>
+
+      <!-- SCHEDULE TAB -->
+      <div class="adm-panel" id="adm-schedule">
+        <h3>Horarios de atención</h3>
+        <div class="schedule-grid" id="scheduleGrid">
+          <!-- Days filled by JS -->
+        </div>
+      </div>
+
+      <!-- APPOINTMENTS TAB -->
+      <div class="adm-panel" id="adm-appointments">
+        <h3>Citas recibidas</h3>
+        <div id="appointmentsAdmin" class="appointments-list"></div>
+      </div>
+
+      <!-- Salon link -->
+      <div class="salon-link-box" id="salonLinkBox" style="display:none;">
+        <label>Enlace de tu página:</label>
+        <div class="link-row">
+          <input type="text" id="salonLinkInput" readonly />
+          <button onclick="copyLink()">Copiar</button>
+        </div>
+        <a id="salonLinkOpen" href="#" target="_blank" class="btn-outline-sm">Abrir mi página →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
