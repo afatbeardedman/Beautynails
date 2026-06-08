@@ -1,0 +1,299 @@
+/* =============================================
+   SALON PAGE STYLES
+   ============================================= */
+
+.salon-page { padding-top: 62px; }
+
+/* ---- SALON HERO ---- */
+.salon-hero {
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.salon-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bg-2), var(--bg));
+  z-index: 0;
+}
+.salon-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,6,24,0.9) 40%, transparent);
+}
+
+.salon-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 24px 28px 36px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.salon-logo-wrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.salon-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.logo-fallback {
+  font-size: 2.5rem;
+  opacity: 0.6;
+}
+
+.salon-meta { flex: 1; }
+.salon-meta h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.salon-tagline {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.salon-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.salon-badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+}
+.salon-contact {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.salon-contact a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+}
+.salon-contact a:hover { color: var(--accent); }
+
+/* ---- MAIN ---- */
+.salon-main { min-height: 400px; }
+
+/* ---- SERVICES GRID ---- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.service-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-3px);
+}
+.service-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.service-desc {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.service-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.service-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+.service-duration {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+}
+.service-book-btn {
+  background: var(--accent-glow);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  padding: 7px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.2s;
+}
+.service-book-btn:hover { background: rgba(199,125,255,0.25); }
+
+/* ---- GALLERY ---- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: transform 0.25s;
+  cursor: pointer;
+}
+.gallery-grid img:hover { transform: scale(1.03); }
+.placeholder-text {
+  color: var(--text-faint);
+  text-align: center;
+  padding: 40px;
+  grid-column: 1/-1;
+}
+
+/* ---- BOOKING ---- */
+.booking-card {
+  max-width: 560px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+}
+.booking-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+.booking-sub {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 28px;
+}
+
+.btn-book {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), #9b59b6);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(199,125,255,0.3);
+}
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(199,125,255,0.45);
+}
+
+.booking-msg {
+  margin-top: 16px;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  text-align: center;
+}
+.booking-msg.success {
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.3);
+  color: #34d399;
+}
+.booking-msg.error {
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.3);
+  color: #f87171;
+}
+
+/* ---- FAB ---- */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, var(--accent), #9b59b6);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(199,125,255,0.45);
+  z-index: 90;
+  transition: transform 0.2s;
+}
+.fab:hover { transform: translateY(-3px) scale(1.03); }
+
+/* ---- APPOINTMENTS LIST ---- */
+.appointment-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.appt-info .appt-name { font-weight: 600; margin-bottom: 4px; }
+.appt-info .appt-detail { font-size: 0.82rem; color: var(--text-muted); }
+.appt-status {
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+.appt-status.pending {
+  background: rgba(251,191,36,0.15);
+  color: #fbbf24;
+}
+.appt-status.confirmed {
+  background: rgba(52,211,153,0.15);
+  color: #34d399;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 640px) {
+  .salon-hero-content { flex-direction: column; align-items: flex-start; }
+  .booking-card { padding: 24px 18px; }
+  .fab { bottom: 16px; right: 16px; }
+}
